@@ -14,8 +14,8 @@ class BookCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'book_id' => ($this->faker->randomNumber(1) % 3 + 1),
-            'category_id' => ($this->faker->randomNumber(1) % 3 + 1)
+            'book_id' => ($this->faker->randomNumber(1) % 50 + 1),
+            'category_id' => ($this->faker->randomNumber(1) % 5 + 1)
         ];
     }
 }

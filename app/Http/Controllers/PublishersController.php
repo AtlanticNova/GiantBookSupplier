@@ -2,84 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\categories;
 use App\Models\publishers;
-use Illuminate\Http\Request;
 
 class PublishersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function displayAllPublisher(publishers $publishers)
     {
-        //
+        $publisherData = $publishers::all();
+        $categoriesData = categories::all();
+        return view('publisher',[
+            'publisher_data' => $publisherData,
+            'categories_data' => $categoriesData
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\publishers  $publishers
-     * @return \Illuminate\Http\Response
-     */
-    public function show(publishers $publishers)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\publishers  $publishers
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(publishers $publishers)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\publishers  $publishers
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, publishers $publishers)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\publishers  $publishers
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(publishers $publishers)
-    {
-        //
+    public function displayPublisherDetail($id){
+        $publisherData = publishers::where('id', $id)->first();
+        $booksData = $publisherData->books;
+        $categoriesData = categories::all();
+        return view('publisherDetail', [
+            'publisherData'=> $publisherData,
+            'booksData' => $booksData,
+            'categories_data' => $categoriesData
+        ]);
     }
 }

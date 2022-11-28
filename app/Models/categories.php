@@ -9,4 +9,8 @@ class categories extends Model
 {
     use HasFactory;
     public $timestamps = false;
+
+    public function books(){
+        return $this->belongsToMany(books::class, 'book_categories');
+    }
 }

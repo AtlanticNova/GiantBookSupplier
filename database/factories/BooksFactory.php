@@ -14,12 +14,12 @@ class BooksFactory extends Factory
     public function definition()
     {
         return [
-            'publisher_id' => $this->faker->numberBetween(1, 3),
-            'title' => $this->faker->text(15),
+            'publisher_id' => $this->faker->numberBetween(1, 10),
+            'title' => $this->faker->text(50),
             'author' => $this->faker->name(),
             'year' => $this->faker->year(),
-            'synopsis' => $this->faker->text(),
-            'image' => $this->faker->imageUrl(1080, 1920,'book cover')
+            'synopsis' => $this->faker->text(255),
+            'image' => $this->faker->imageUrl(1080, 1280,'book cover')
         ];
     }
 }
